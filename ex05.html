@@ -1,0 +1,162 @@
+//CSS
+.container {
+    width: 600px;
+    height: 400px;
+    background-color: rgb(89, 89, 163);
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 50px;
+    border-radius: 12px;
+    border: black solid 2px;
+    box-shadow: 5px 5px 10px grey;
+}
+#salary{
+    border: red solid 2px;
+    border-radius: 12px;
+    padding: 5px;
+    margin-top: 10px;
+    
+    text-align: center; 
+}
+#name{
+    border: red solid 2px;
+    border-radius: 12px;
+    padding: 5px;
+    margin-top: 10px;
+    
+    text-align: center; 
+}
+#number{
+    border: red solid 2px;
+    border-radius: 12px;
+    padding: 5px;
+    margin-top: 10px;
+    
+    text-align: center; 
+}
+#text{
+    border: red solid 2px;
+    border-radius: 12px;
+    padding: 5px;
+    margin-top: 10px;
+    
+    text-align: center; 
+}
+.add{
+    border: rgb(181, 116, 116) solid 2px;
+    border-radius: 12px;
+    padding: 5px;
+    margin-top: 20px;
+    background-color: yellow;
+    
+    text-align: center; 
+}
+.display{
+    border: rgb(205, 137, 137) solid 2px;
+    border-radius: 12px;
+    padding: 5px;
+    margin-top: 10px;
+    background-color: yellow;
+    
+    text-align: center; 
+}
+.salary{
+    border: rgb(254, 160, 160) solid 2px;
+    border-radius: 12px;
+    padding: 5px;
+    margin-top: 10px;
+    background-color: yellow;
+    
+    text-align: center; 
+}
+.total{
+    border: rgb(221, 132, 132) solid 2px;
+    border-radius: 12px;
+    padding: 5px;
+    margin-top: 10px;
+    background-color: yellow;
+    
+    text-align: center; 
+}
+.average{
+    border: rgb(199, 119, 119) solid 2px;
+    border-radius: 12px;
+    padding: 5px;
+    margin-top: 10px;
+    background-color: yellow;
+
+    
+    text-align: center; 
+}
+.count{
+    border: rgb(241, 144, 144) solid 2px;
+    border-radius: 12px;
+    padding: 5px;
+        background-color: yellow;
+    margin-top: 10px;
+    
+    text-align: center; 
+}
+//Jss
+function AddEmpolyee() {
+    var name = document.getElementById("name").value;
+    var salary = document.getElementById("salary").value;
+    var department = document.getElementById("text").value;
+    var employee = {
+        name: name,
+        salary: salary,
+        department: department
+    };
+    var employees = JSON.parse(localStorage.getItem("employees")) || [];
+    employees.push(employee);
+    localStorage.setItem("employees", JSON.stringify(employees));
+    alert("Employee added successfully!");
+}
+function DisplayAll() {
+    var employees = JSON.parse(localStorage.getItem("employees")) || [];
+    var displayArea = document.getElementById("displayArea");
+    displayArea.innerHTML = ""; 
+}
+    employees.forEach(function(employee) {
+        var employeeInfo = document.createElement("p");
+        employeeInfo.innerText = "Name: " + employee.name + ", Salary: " + employee.salary + ", Department: " + employee.department;
+        displayArea.appendChild(employeeInfo);
+    });
+function Salary() {
+    var employees = JSON.parse(localStorage.getItem("employees")) || [];
+    var displayArea = document.getElementById("displayArea");
+    displayArea.innerHTML = ""; 
+}
+    employees.forEach(function(employee) {
+        if (employee.salary  50000) {
+            var employeeInfo = document.createElement("p");
+            employeeInfo.innerText = "Name: " + employee.name + ", Salary: " + employee.salary + ", Department: " + employee.department;
+            displayArea.appendChild(employeeInfo);
+        }});
+function TotalSalary() {
+    var employees = JSON.parse(localStorage.getItem("employees")) || [];
+    var totalSalary = employees.reduce(function(total, employee) {
+        return total + parseFloat(employee.salary);
+    }, 0);
+    alert("Total Salary: " + totalSalary);
+}
+function AverageSalary() {
+    var employees = JSON.parse(localStorage.getItem("employees")) || [];    
+    var totalSalary = employees.reduce(function(total, employee) {
+        return total + parseFloat(employee.salary);
+    } , 0);
+    var averageSalary = totalSalary / employees.length;
+    alert("Average Salary: " + averageSalary);
+}
+function CountbyDepartment() {
+    var employees = JSON.parse(localStorage.getItem("employees")) || [];
+    var departmentCount = {};   
+    employees.forEach(function(employee) {
+        if (departmentCount[employee.department]) {
+            departmentCount[employee.department]++; 
+        } else {
+            departmentCount[employee.department] = 1;
+        }
+    });
+    alert("Employee Count by Department: " + JSON.stringify(departmentCount));
+}
