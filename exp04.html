@@ -1,0 +1,69 @@
+CSS
+.container {
+    width: 600px;
+    height: 400px;
+    background-color: lightblue;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 50px;
+    border-radius: 12px;
+    border: black solid 2px;
+    box-shadow: 5px 5px 10px rgb(178, 156, 156);
+}
+.item1{
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}
+.item2{
+    border-radius: 10px;
+    border: black solid 2px;
+    padding: 10px 20px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-color:yellow;
+    margin-top: 20px;
+}
+//Js
+function calculateResult() {    
+    var subjects = document.getElementById("subjects").value;
+    console.log(typeof(subjects));
+    let totalmarks=0;
+    for(let i=1;i<=subjects;i++){
+        let marks=parseFloat(prompt("Enter marks for subject "+i));
+        totalmarks=marks+totalmarks;
+
+    }
+    let average=totalmarks/subjects;
+    let grade;
+    let result;
+    if(average=90)
+    {
+        grade="A";
+
+    }
+    else if(average=80)
+    {
+        grade="B";
+    }
+    else if(average=70)
+    {
+        grade="C";
+    }
+    else if(average=60)
+    {
+        grade="D";
+    }   
+    else
+    {
+        grade="F";
+    }
+    if(grade!="F")
+    {
+        result="Pass";
+    }
+    else    
+    {
+        result="Fail";
+    }
+    document.getElementById("result").innerHTML="Total Marks: "+totalmarks+"<br"+"Average Marks: "+average+"<br"+"Grade: "+grade+"<br"+"Result: "+result;
+}
